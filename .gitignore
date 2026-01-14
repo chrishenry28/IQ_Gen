@@ -1,4 +1,5 @@
 #Python
 __pycache__/
 *.pyc
-wavegen_gui.py 
+*.bin
+*.sigmfmeta
