@@ -1,7 +1,7 @@
-# SDR Waveform Generator (USRP X310 and other SDRs)
+# SDR Waveform Generator (USRP and other SDRs)
 
 Modular generator for complex baseband IQ waveforms with a GUI analyzer with integration of SigMF for the creation and ingestion of meta data for use with other applications.
-Targets lab testing with Ettus USRP X310, HackRF, and other SDRs that accept
+Targets lab testing with Ettus USRP, HackRF, and other SDRs that accept
 raw IQ files.
 
 Generates interleaved IQ samples:
