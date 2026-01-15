@@ -269,19 +269,19 @@ class GeneratorWorker(QObject):
                         p.burst_period, p.burst_duty, p.burst_rise, p.burst_fall,
                         p.packet_len, p.guard_time
                     )
-                x2 = generate_single_waveform(
-                    p.wf2, p.fs, p.dur, p.sym_rate,
-                    1.0, p.pulse, p.rolloff, p.span,
-                    p.tonefreq, p.modfreq, p.depth, p.dev, p.phase_dev,
-                    p.bw, p.freqs2, p.centerfreq, p.spacing,
-                    p.a0, p.a1, p.duty, p.f0, p.f1, p.h, p.bt,
-                    p.fstart, p.fend, p.hoprate, p.fftsize, p.cplen,
-                    p.burst_period, p.burst_duty, p.burst_rise, p.burst_fall,
-                    p.packet_len, p.guard_time
-                )
-                combo = wavegen.combine_waveforms(
-                    [x1, x2], [p.w1_weight, p.w2_weight])
-                x = wavegen.normalize_to_level(combo, p.out_level)
+                    x2 = generate_single_waveform(
+                        p.wf2, p.fs, p.dur, p.sym_rate,
+                        1.0, p.pulse, p.rolloff, p.span,
+                        p.tonefreq, p.modfreq, p.depth, p.dev, p.phase_dev,
+                        p.bw, p.freqs2, p.centerfreq, p.spacing,
+                        p.a0, p.a1, p.duty, p.f0, p.f1, p.h, p.bt,
+                        p.fstart, p.fend, p.hoprate, p.fftsize, p.cplen,
+                        p.burst_period, p.burst_duty, p.burst_rise, p.burst_fall,
+                        p.packet_len, p.guard_time
+                    )
+                    combo = wavegen.combine_waveforms(
+                        [x1, x2], [p.w1_weight, p.w2_weight])
+                    x = wavegen.normalize_to_level(combo, p.out_level)
 
                 if p.fmt == "int16":
                     iq = wavegen.iq_to_int16_interleaved(x)
@@ -293,12 +293,12 @@ class GeneratorWorker(QObject):
                 iq.tofile(p.outfile)
                 size_bytes = os.path.getsize(p.outfile)
 
+                num_complex_samples = x.size
+                waveform_label = p.wf1 if not p.use_sum else f"{p.wf1}+{p.wf2}"
                 if p.sigmf_enabled:
-                    num_complex_samples = x.size
-                    waveform_label = p.wf1 if not p.use_sum else f"{p.wf1}+{p.wf2}"
-                params = {
-                    "fs": p.fs,
-                    "waveform": waveform_label,
+                    params = {
+                        "fs": p.fs,
+                        "waveform": waveform_label,
                     "sym_rate": p.sym_rate,
                     "bw": p.bw,
                     "pulse": p.pulse,
@@ -521,7 +521,14 @@ class MainWindow(QMainWindow):
 
     def _build_analyzer_tab(self):
         analyzer_tab = QWidget()
-        analyzer_v = QVBoxLayout(analyzer_tab)
+        analyzer_tab_v = QVBoxLayout(analyzer_tab)
+        analyzer_tab_v.setContentsMargins(0, 0, 0, 0)
+        analyzer_tab_v.setSpacing(0)
+
+        scroll = QScrollArea()
+        scroll.setWidgetResizable(True)
+        content = QWidget()
+        analyzer_v = QVBoxLayout(content)
         analyzer_v.setContentsMargins(12, 12, 12, 12)
         analyzer_v.setSpacing(10)
 
@@ -746,6 +753,9 @@ class MainWindow(QMainWindow):
         analyzer_v.addWidget(metrics_box)
 
         analyzer_v.setStretchFactor(self.analyzer_plot_tabs, 1)
+
+        scroll.setWidget(content)
+        analyzer_tab_v.addWidget(scroll)
 
         self.tabs.addTab(analyzer_tab, "Analyzer")
 

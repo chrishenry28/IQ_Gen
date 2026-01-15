@@ -1,6 +1,6 @@
 # SDR Waveform Generator (USRP X310 and other SDRs)
 
-Modular generator for complex baseband IQ waveforms with a GUI analyzer.
+Modular generator for complex baseband IQ waveforms with a GUI analyzer with integration of SigMF for the creation and ingestion of meta data for use with other applications.
 Targets lab testing with Ettus USRP X310, HackRF, and other SDRs that accept
 raw IQ files.
 
@@ -41,6 +41,20 @@ pip install numpy pyside6 pyside6-addons matplotlib
   - `int8` (HackRF sc8)
 
 Make sure your SDR sample rate matches `--fs`.
+
+## Screenshots
+
+Generator:
+
+![Waveform generator GUI](docs/images/wavgen_gui.png)
+
+Analyzer (top):
+
+![Analyzer controls and plots](docs/images/analyze_top.png)
+
+Analyzer (bottom):
+
+![Analyzer measurements panel](docs/images/analyze_bottom.png)
 
 ## Supported Waveforms
 
