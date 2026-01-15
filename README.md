@@ -48,11 +48,11 @@ Generator:
 
 ![Waveform generator GUI](docs/images/wavgen_gui.png)
 
-Analyzer (top):
+Analyzer Spectrum View and Controls:
 
 ![Analyzer controls and plots](docs/images/analyze_top.png)
 
-Analyzer (bottom):
+Analyzer Waterfall View and Mesurements:
 
 ![Analyzer measurements panel](docs/images/analyze_bottom.png)
 
