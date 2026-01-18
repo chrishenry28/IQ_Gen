@@ -15,7 +15,8 @@ You can play the output with GNU Radio, UHD, or custom SDR code.
 ## Entry Points
 
 - `wavegen.py`: core library and CLI
-- `wavegen_gui_pyside6.py`: PySide6 GUI (generator + analyzer)
+- `wavegen_gui.py`: PySide6 GUI (generator + analyzer)
+- `fhss_hopset_gen,py`: Hopset generator for use when creating frequency hopping spread spectrum waveforms 
 
 ## Installation
 
